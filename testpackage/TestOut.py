@@ -2,6 +2,9 @@ import math
 
 listOfSequences = []
 
+# open a (new) file to write
+output_file = open("Output.txt", "w")
+
 
 # Reads FASTA file
 def read_file(file_path):
@@ -20,7 +23,7 @@ def pair_sequences(sequence_list):
     for x in sequence_list:
         for y in sequence_list:
             calculate_jc(x, y)
-        print("\n")
+        output_file.write("\n")
 
 
 # Calculates JC
@@ -47,8 +50,10 @@ def calculate_jc(sequence_a, sequence_b):
     values.append(distance)
 
     for z in values:
-        print(z, end=" ")
+        output_file.write(str(format(z, '.4f')))
+        output_file.write(" ")
 
 
 read_file("8.1_AlignedDNA.fas")
 pair_sequences(listOfSequences)
+output_file.close()
